@@ -11,10 +11,4 @@ public class ApplyInteraction implements Interaction {
 		this.subjectItem = new SubjectItem(item);
 	}
 
-	@Override
-	public void action() {
-		// TODO Auto-generated method stub
-
-	}
-
 }
