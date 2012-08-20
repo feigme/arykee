@@ -1,6 +1,7 @@
 package com.iary.dci.context;
 
 import com.iary.dci.context.role.SellerUser;
+import com.iary.dci.interaction.Interaction;
 
 public class ApplyContext implements Context {
 
@@ -11,9 +12,8 @@ public class ApplyContext implements Context {
 	}
 
 	@Override
-	public void doContext() {
-		// TODO Auto-generated method stub
-
+	public void doContext(Interaction interaction) {
+		
 	}
 
 }

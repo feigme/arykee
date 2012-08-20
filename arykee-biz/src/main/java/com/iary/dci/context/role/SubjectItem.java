@@ -8,8 +8,8 @@ public class SubjectItem {
 
 	private String subjectPrice;
 
-	SubjectItem(Item item) {
-		Mixin.create(new Object[] { item, this });
+	public SubjectItem(Item item) {
+		Mixin.create(new Object[] { this, item });
 	}
 
 	public String getSubjectPrice() {

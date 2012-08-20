@@ -1,10 +1,10 @@
 package com.iary.dci.data.aggregate.user;
 
-import com.iary.dci.data.aggregate.ValueObject;
+import com.iary.dci.data.aggregate.BaseValueObject;
 
-public class UserDetail implements ValueObject {
+public class UserDetail extends BaseValueObject {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3560046792635233807L;
 
 	private String userName;
 	private String password;

@@ -7,15 +7,19 @@ public class Item implements Aggregate<Long> {
 	private static final long serialVersionUID = 4949786562632751654L;
 
 	private Long id;
-	private ItemDetail detail;
+	private ItemDetail itemDetail;
 
+	public Item(ItemDetail itemDetail){
+		this.itemDetail = itemDetail;
+	}
+	
 	@Override
 	public Long getId() {
 		return id;
 	}
 
-	public ItemDetail getDetail() {
-		return detail;
+	public ItemDetail getItemDetail() {
+		return itemDetail;
 	}
 
 }

@@ -1,8 +1,8 @@
 package com.iary.dci.data.aggregate.item;
 
-import com.iary.dci.data.aggregate.ValueObject;
+import com.iary.dci.data.aggregate.BaseValueObject;
 
-public class ItemDetail implements ValueObject {
+public class ItemDetail extends BaseValueObject {
 
 	private static final long serialVersionUID = -7706672246334842699L;
 

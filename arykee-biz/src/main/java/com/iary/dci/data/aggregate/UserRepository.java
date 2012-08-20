@@ -1,12 +1,11 @@
 package com.iary.dci.data.aggregate;
 
 /**
- * æ€∫œ
+ * ”√ªß≤÷¥¢
  * 
  * @author feiying.gh
  * 
- * @param <PK>
  */
-public interface Aggregate<PK> extends Entity<PK> {
+public interface UserRepository<PK, T extends Aggregate<PK>> {
 
 }
