@@ -1,14 +1,22 @@
 package com.iary.dci.interaction;
 
+import com.iary.dci.context.role.SellerUser;
 import com.iary.dci.context.role.SubjectItem;
-import com.iary.dci.data.aggregate.item.Item;
 
 public class ApplyInteraction implements Interaction {
 
+	private SellerUser sellerUser;
 	private SubjectItem subjectItem;
 
-	public ApplyInteraction(Item item) {
-		this.subjectItem = new SubjectItem(item);
+	public ApplyInteraction(SellerUser sellerUser, SubjectItem subjectItem) {
+		this.sellerUser = sellerUser;
+		this.subjectItem = subjectItem;
+	}
+
+	@Override
+	public void action() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

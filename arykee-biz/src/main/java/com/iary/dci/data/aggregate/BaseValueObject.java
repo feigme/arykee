@@ -8,7 +8,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * @author feiying.gh
  * 
  */
-public class BaseValueObject implements ValueObject {
+public abstract class BaseValueObject implements ValueObject {
 
 	private static final long serialVersionUID = 585431457759669786L;
 

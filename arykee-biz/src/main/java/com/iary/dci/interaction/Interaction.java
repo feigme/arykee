@@ -8,4 +8,9 @@ package com.iary.dci.interaction;
  */
 public interface Interaction {
 
+	/**
+	 * Ö´ÐÐ½»»¥
+	 */
+	void action();
+
 }
