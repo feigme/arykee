@@ -17,6 +17,10 @@ public class Item extends BaseAggregate<Long> {
 	public Long getId() {
 		return id;
 	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public ItemDetail getItemDetail() {
 		return itemDetail;

@@ -1,14 +1,14 @@
 package com.iary.dci.interaction;
 
-import com.iary.dci.context.role.SellerUser;
-import com.iary.dci.context.role.SubjectItem;
+import com.iary.dci.context.role.SellerUser_Role;
+import com.iary.dci.context.role.SubjectItem_Role;
 
 public class ApplyInteraction implements Interaction {
 
-	private SellerUser sellerUser;
-	private SubjectItem subjectItem;
+	private SellerUser_Role sellerUser;
+	private SubjectItem_Role subjectItem;
 
-	public ApplyInteraction(SellerUser sellerUser, SubjectItem subjectItem) {
+	public ApplyInteraction(SellerUser_Role sellerUser, SubjectItem_Role subjectItem) {
 		this.sellerUser = sellerUser;
 		this.subjectItem = subjectItem;
 	}

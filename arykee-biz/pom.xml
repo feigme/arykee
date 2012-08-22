@@ -35,5 +35,10 @@
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.disruptor</groupId>
+			<artifactId>disruptor</artifactId>
+		</dependency>
 	</dependencies>
 </project>
