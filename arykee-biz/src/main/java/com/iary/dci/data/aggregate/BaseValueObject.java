@@ -1,6 +1,6 @@
 package com.iary.dci.data.aggregate;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * ÷µ∂‘œÛ

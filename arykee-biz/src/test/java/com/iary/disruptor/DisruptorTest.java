@@ -28,10 +28,10 @@ public class DisruptorTest {
 
 		Item item = new Item(new ItemDetail());
 		item.setId(1L);
-		disruptor.publishEvent(new ItemEventTranslator(item, EventType.INSERT));
+		//disruptor.publishEvent(new ItemEventTranslator(item, EventType.INSERT));
 
 		item = new Item(new ItemDetail());
 		item.setId(2L);
-		disruptor.publishEvent(new ItemEventTranslator(item, EventType.UPDATE));
+		//disruptor.publishEvent(new ItemEventTranslator(item, EventType.UPDATE));
 	}
 }
