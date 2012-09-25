@@ -21,90 +21,90 @@ import com.iary.tdl.dto.UserDTO;
 
 public class ShiroDbRealm extends AuthorizingRealm {
 
-	private UserDAO userDAO;
+    private UserDAO userDAO;
 
-	@Autowired
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
-	}
+    @Autowired
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
-	/**
-	 * ÊÚÈ¨²éÑ¯»Øµ÷º¯Êı, ½øĞĞ¼øÈ¨µ«»º´æÖĞÎŞÓÃ»§µÄÊÚÈ¨ĞÅÏ¢Ê±µ÷ÓÃ.
-	 */
-	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
-		UserDTO userDTO = userDAO.findUserDTOByLoginName(shiroUser.loginName);
+    /**
+     * æˆæƒæŸ¥è¯¢å›è°ƒå‡½æ•°, è¿›è¡Œé‰´æƒä½†ç¼“å­˜ä¸­æ— ç”¨æˆ·çš„æˆæƒä¿¡æ¯æ—¶è°ƒç”¨.
+     */
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
+        UserDTO userDTO = userDAO.findUserDTOByLoginName(shiroUser.loginName);
 
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		// for (Role role : user.getRoleList()) {
-		// //»ùÓÚRoleµÄÈ¨ÏŞĞÅÏ¢
-		// info.addRole(role.getName());
-		// //»ùÓÚPermissionµÄÈ¨ÏŞĞÅÏ¢
-		// info.addStringPermissions(role.getPermissionList());
-		// }
-		return info;
-	}
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        // for (Role role : user.getRoleList()) {
+        // //åŸºäºRoleçš„æƒé™ä¿¡æ¯
+        // info.addRole(role.getName());
+        // //åŸºäºPermissionçš„æƒé™ä¿¡æ¯
+        // info.addStringPermissions(role.getPermissionList());
+        // }
+        return info;
+    }
 
-	/**
-	 * ÈÏÖ¤»Øµ÷º¯Êı,µÇÂ¼Ê±µ÷ÓÃ
-	 */
-	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
-		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		UserDTO userDTO = userDAO.findUserDTOByLoginName(token.getUsername());
-		if (userDTO != null) {
-			if (userDTO.getStatus().equals("disabled")) {
-				throw new DisabledAccountException();
-			}
+    /**
+     * è®¤è¯å›è°ƒå‡½æ•°,ç™»å½•æ—¶è°ƒç”¨
+     */
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
+        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+        UserDTO userDTO = userDAO.findUserDTOByLoginName(token.getUsername());
+        if (userDTO != null) {
+            if (userDTO.getStatus().equals("disabled")) {
+                throw new DisabledAccountException();
+            }
 
-			return new SimpleAuthenticationInfo(new ShiroUser(userDTO.getLoginName(), userDTO.getName()),
-					userDTO.getPassword(), null, getName());
-		} else {
-			return null;
-		}
-	}
+            return new SimpleAuthenticationInfo(new ShiroUser(userDTO.getLoginName(), userDTO.getName()),
+                    userDTO.getPassword(), null, getName());
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * ×Ô¶¨ÒåAuthentication¶ÔÏó£¬Ê¹µÃSubject³ıÁËĞ¯´øÓÃ»§µÄµÇÂ¼ÃûÍâ»¹¿ÉÒÔĞ¯´ø¸ü¶àĞÅÏ¢.
-	 */
-	public static class ShiroUser implements Serializable {
-		private static final long serialVersionUID = -1373760761780840081L;
-		public String loginName;
-		public String name;
+    /**
+     * è‡ªå®šä¹‰Authenticationå¯¹è±¡ï¼Œä½¿å¾—Subjecté™¤äº†æºå¸¦ç”¨æˆ·çš„ç™»å½•åå¤–è¿˜å¯ä»¥æºå¸¦æ›´å¤šä¿¡æ¯.
+     */
+    public static class ShiroUser implements Serializable {
+        private static final long serialVersionUID = -1373760761780840081L;
+        public String loginName;
+        public String name;
 
-		public ShiroUser(String loginName, String name) {
-			this.loginName = loginName;
-			this.name = name;
-		}
+        public ShiroUser(String loginName, String name) {
+            this.loginName = loginName;
+            this.name = name;
+        }
 
-		public String getName() {
-			return name;
-		}
+        public String getName() {
+            return name;
+        }
 
-		/**
-		 * ±¾º¯ÊıÊä³ö½«×÷ÎªÄ¬ÈÏµÄ<shiro:principal/>Êä³ö.
-		 */
-		@Override
-		public String toString() {
-			return loginName;
-		}
+        /**
+         * æœ¬å‡½æ•°è¾“å‡ºå°†ä½œä¸ºé»˜è®¤çš„<shiro:principal/>è¾“å‡º.
+         */
+        @Override
+        public String toString() {
+            return loginName;
+        }
 
-		/**
-		 * ÖØÔØequals,Ö»¼ÆËãloginName;
-		 */
-		@Override
-		public int hashCode() {
-			return HashCodeBuilder.reflectionHashCode(this, "loginName");
-		}
+        /**
+         * é‡è½½equals,åªè®¡ç®—loginName;
+         */
+        @Override
+        public int hashCode() {
+            return HashCodeBuilder.reflectionHashCode(this, "loginName");
+        }
 
-		/**
-		 * ÖØÔØequals,Ö»±È½ÏloginName
-		 */
-		@Override
-		public boolean equals(Object obj) {
-			return EqualsBuilder.reflectionEquals(this, obj, "loginName");
-		}
-	}
+        /**
+         * é‡è½½equals,åªæ¯”è¾ƒloginName
+         */
+        @Override
+        public boolean equals(Object obj) {
+            return EqualsBuilder.reflectionEquals(this, obj, "loginName");
+        }
+    }
 
 }

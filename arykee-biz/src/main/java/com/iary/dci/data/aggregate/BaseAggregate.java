@@ -8,7 +8,7 @@ public abstract class BaseAggregate<PK> implements Aggregate<PK> {
 
 	@Override
 	public Role assignRole(Class<? extends Role> role) {
-		try {
+        try {
 			return (Role) role.newInstance().assign(this);
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e);

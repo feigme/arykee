@@ -3,7 +3,7 @@ package com.iary.dci.data.aggregate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Öµ¶ÔÏó
+ * å€¼å¯¹è±¡
  * 
  * @author feiying.gh
  * 
